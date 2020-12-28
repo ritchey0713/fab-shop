@@ -10,7 +10,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case FETCH_USER:
       return {
         ...state,
-        current_user: action.payload.data || null,
+        current_user: action.payload.data || false,
       };
     default:
       return state;
