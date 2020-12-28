@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import LoggedIn from "./loggedIn.component";
+import NotLoggedIn from "./NotLoggedIn.component";
 
 const Header = (props) => {
   console.log(props);
@@ -10,9 +12,7 @@ const Header = (props) => {
           Fab Shop
         </a>
         <ul className="right">
-          <li>
-            <a href="/">Log in with Google</a>
-          </li>
+          {props.current_user ? <LoggedIn /> : <NotLoggedIn />}
         </ul>
       </div>
     </nav>
@@ -24,3 +24,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps)(Header);
+
+// <li>
+//             <a href="/">Log in with Google</a>
+//           </li>
