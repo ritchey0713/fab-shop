@@ -6,10 +6,12 @@ const INITIAL_STATE = {
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case FETCH_USER:
-      return state;
+      return {
+        ...state,
+        current_user: action.payload.data || null,
+      };
     default:
       return state;
   }
