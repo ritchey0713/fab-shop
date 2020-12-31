@@ -1,5 +1,5 @@
 import React from "react";
 
-const LoggedIn = () => <div>IS LOGGED IN</div>;
+const LoggedIn = () => <li>some data goes here when user is logged in!</li>;
 
 export default LoggedIn;
