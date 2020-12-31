@@ -1,5 +1,9 @@
 import React from "react";
 
-const NotLoggedIn = () => <div>IS NOT LOGGED IN</div>;
+const NotLoggedIn = () => (
+  <li>
+    <a href="/auth/google">LOG IN WITH GOOGLE</a>
+  </li>
+);
 
 export default NotLoggedIn;
