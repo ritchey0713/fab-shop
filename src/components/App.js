@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./header/header.component";
 import { connect } from "react-redux";
 import { fetchUser } from "../redux/user/user.actions";
+import Landing from "./landing/Landing.component";
 
 const Dashboard = () => <h2>Dashboard</h2>;
 const NewFab = () => <h2>NewFab</h2>;
-const Landing = () => <h2>Landing</h2>;
 
 const App = (props) => {
   const { fetchUser } = props;
