@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import LoggedIn from "./loggedIn.component";
 import NotLoggedIn from "./NotLoggedIn.component";
 import { isLoggedIn } from "../../utils/isLoggedIn";
+import { Link } from "react-router-dom";
 
 const Header = ({ currentUser }) => {
   return (
     <nav>
       <div className="nav-wrapper">
-        <a href="/" className="left brand-logo">
+        <Link to={currentUser ? "/dashboard" : "/"} className="left brand-logo">
           Fab Shop
-        </a>
+        </Link>
         <ul className="right">{isLoggedIn(currentUser)}</ul>
       </div>
     </nav>
