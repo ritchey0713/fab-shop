@@ -16,8 +16,8 @@ const App = (props) => {
 
   return (
     <div className="container">
-      <Header />
       <BrowserRouter>
+        <Header />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/dashboard" component={Dashboard} />
