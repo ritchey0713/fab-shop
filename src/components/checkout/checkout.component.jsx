@@ -7,6 +7,8 @@ import Row from "./prebuilt/Row.component";
 import BillingDetailsFields from "./prebuilt/BillingDetailsFields.component";
 import SubmitButton from "./prebuilt/SubmitButton";
 import CheckoutError from "./prebuilt/CheckoutError.component";
+import { sendPayment } from "../../redux/user/user.actions";
+import { connect } from "react-redux";
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -52,9 +54,10 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
     const cardElement = elements.getElement("card");
 
     try {
-      const { data: clientSecret } = await axios.post("/api/payment_intents", {
+      const { data: clientSecret } = await axios.post("/api/stripe", {
         amount: price * 100,
       });
+      // sendPayment();
 
       const paymentMethodReq = await stripe.createPaymentMethod({
         type: "card",
@@ -144,4 +147,4 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
   );
 };
 
-export default CheckoutForm;
+export default connect(null, { sendPayment })(CheckoutForm);
