@@ -7,7 +7,9 @@ export const sendPayment = (
   cardElement,
   billingDetails
 ) => async (dispatch) => {
-  const data = await axios.post("/api/stripe", {
+  const {
+    data: { order, secret },
+  } = await axios.post("/api/stripe", {
     amount: price * 100,
   });
   const paymentMethodReq = await stripe.createPaymentMethod({
@@ -15,14 +17,8 @@ export const sendPayment = (
     card: cardElement,
     billing_details: billingDetails,
   });
-
-  console.log(data);
-  const paymentInfo = await stripe.confirmCardPayment(data.clientSecret, {
+  await stripe.confirmCardPayment(secret, {
     payment_method: paymentMethodReq.paymentMethod.id,
   });
-  //dispatch({ type: SEND_PAYMENT, payload: data });
-};
-
-export const defaultTest = () => async (dispatch) => {
-  console.log("TEST");
+  dispatch({ type: SEND_PAYMENT, payload: order });
 };
