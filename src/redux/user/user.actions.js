@@ -11,11 +11,6 @@ export const fetchUser = () => async (dispatch) => {
 //     .then((resp) => dispatch({ type: FETCH_USER, payload: resp }));
 // };
 export const logoutUser = () => async (dispatch) => {
-  const resp = await axios.get("/api/logout");
+  await axios.get("/api/logout");
   dispatch({ type: LOG_OUT_USER });
-};
-
-export const sendPayment = (data) => async (dispatch) => {
-  const resp = await axios.post("/api/stripe", data);
-  dispatch({ type: "X", payload: resp.data });
 };
