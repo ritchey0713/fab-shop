@@ -7,7 +7,7 @@ import BillingDetailsFields from "./prebuilt/BillingDetailsFields.component";
 import SubmitButton from "./prebuilt/SubmitButton";
 import CheckoutError from "./prebuilt/CheckoutError.component";
 import { connect } from "react-redux";
-import { sendPayment, defaultTest } from "../../redux/order/order.actions";
+import { sendPayment } from "../../redux/order/order.actions";
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -135,4 +135,4 @@ const CheckoutForm = ({ price, onSuccessfulCheckout, sendPayment }) => {
   );
 };
 
-export default connect(null, { sendPayment, defaultTest })(CheckoutForm);
+export default connect(null, { sendPayment })(CheckoutForm);
