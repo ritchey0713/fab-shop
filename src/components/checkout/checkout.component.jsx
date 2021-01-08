@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styled from "@emotion/styled";
-import axios from "axios";
 
 import Row from "./prebuilt/Row.component";
 import BillingDetailsFields from "./prebuilt/BillingDetailsFields.component";
 import SubmitButton from "./prebuilt/SubmitButton";
 import CheckoutError from "./prebuilt/CheckoutError.component";
-import { sendPayment } from "../../redux/user/user.actions";
 import { connect } from "react-redux";
+import { sendPayment, defaultTest } from "../../redux/order/order.actions";
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -20,7 +19,7 @@ const CardElementContainer = styled.div`
   }
 `;
 
-const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
+const CheckoutForm = ({ price, onSuccessfulCheckout, sendPayment }) => {
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
 
@@ -54,34 +53,23 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
     const cardElement = elements.getElement("card");
 
     try {
-      const { data: clientSecret } = await axios.post("/api/stripe", {
-        amount: price * 100,
-      });
-      // sendPayment();
+      sendPayment(stripe, price, cardElement, billingDetails);
+      // defaultTest();
+      // set error from reducer
+      // if (paymentMethodReq.error) {
+      //   setCheckoutError(paymentMethodReq.error.message);
+      //   setProcessingTo(false);
+      //   return;
+      // }
 
-      const paymentMethodReq = await stripe.createPaymentMethod({
-        type: "card",
-        card: cardElement,
-        billing_details: billingDetails,
-      });
+      // set error from reducer
+      // if (data.error) {
+      //   setCheckoutError(data.error.message);
+      //   setProcessingTo(false);
+      //   return;
+      // }
 
-      if (paymentMethodReq.error) {
-        setCheckoutError(paymentMethodReq.error.message);
-        setProcessingTo(false);
-        return;
-      }
-
-      const { error } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: paymentMethodReq.paymentMethod.id,
-      });
-
-      if (error) {
-        setCheckoutError(error.message);
-        setProcessingTo(false);
-        return;
-      }
-
-      onSuccessfulCheckout();
+      // onSuccessfulCheckout();
     } catch (err) {
       setCheckoutError(err.message);
     }
@@ -147,4 +135,4 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
   );
 };
 
-export default connect(null, { sendPayment })(CheckoutForm);
+export default connect(null, { sendPayment, defaultTest })(CheckoutForm);
