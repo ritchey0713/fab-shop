@@ -12,7 +12,12 @@ const Header = ({ currentUser }) => {
         <Link to={currentUser ? "/dashboard" : "/"} className="left brand-logo">
           Fab Shop
         </Link>
-        <ul className="right">{isLoggedIn(currentUser)}</ul>
+        <ul className="right hide-on-med-and-down">
+          <li>
+            <Link to="/checkout">Checkout</Link>
+          </li>
+          <li>{isLoggedIn(currentUser)}</li>
+        </ul>
       </div>
     </nav>
   );
