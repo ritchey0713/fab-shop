@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 import { fetchUser } from "../redux/user/user.actions";
 import Landing from "./landing/Landing.component";
 import CheckoutForm from "./checkout/checkout.container";
+import NewFabForm from "./newFab/newFab.component";
 
 const Dashboard = () => <h2>Dashboard</h2>;
-const NewFab = () => <h2>NewFab</h2>;
 
 const App = (props) => {
   const { fetchUser } = props;
@@ -22,7 +22,7 @@ const App = (props) => {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/fab/new" component={NewFab} />
+          <Route exact path="/fab/new" component={NewFabForm} />
           <Route exact path="/checkout" component={CheckoutForm} />
         </Switch>
       </BrowserRouter>
