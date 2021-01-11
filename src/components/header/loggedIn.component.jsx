@@ -8,9 +8,9 @@ const LoggedIn = ({ logoutUser }) => {
   };
 
   return (
-    <li>
-      <button onClick={buttonOnClick}>Logout!</button>
-    </li>
+    <button className="btn-flat white-text" onClick={buttonOnClick}>
+      Logout!
+    </button>
   );
 };
 
