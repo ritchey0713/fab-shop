@@ -1,7 +1,7 @@
 import { FETCH_USER, LOG_OUT_USER } from "./user.types";
 
 const INITIAL_STATE = {
-  current_user: null,
+  currentUser: null,
   error: null,
 };
 
@@ -10,7 +10,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case FETCH_USER:
       return {
         ...state,
-        current_user: action.payload.data || false,
+        currentUser: action.payload || false,
       };
     case LOG_OUT_USER:
       return {
