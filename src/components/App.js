@@ -6,14 +6,17 @@ import { fetchUser } from "../redux/user/user.actions";
 import Landing from "./landing/Landing.component";
 import CheckoutForm from "./checkout/checkout.container";
 import NewFabForm from "./newFab/newFab.component";
+import PrivateRoute from "../routers/PrivateRoute";
 
 const Dashboard = () => <h2>Dashboard</h2>;
 
 const App = (props) => {
-  const { fetchUser } = props;
+  const { fetchUser, currentUser } = props;
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
+
+  console.log(currentUser);
 
   return (
     <div className="container">
@@ -21,7 +24,12 @@ const App = (props) => {
         <Header />
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute
+            currentUser={currentUser}
+            exact
+            path="/dashboard"
+            component={Dashboard}
+          />
           <Route exact path="/fab/new" component={NewFabForm} />
           <Route exact path="/checkout" component={CheckoutForm} />
         </Switch>
@@ -29,5 +37,8 @@ const App = (props) => {
     </div>
   );
 };
+const mapStateToProps = (state, ownProps) => ({
+  currentUser: state.user.current_user,
+});
 
-export default connect(null, { fetchUser })(App);
+export default connect(mapStateToProps, { fetchUser })(App);
