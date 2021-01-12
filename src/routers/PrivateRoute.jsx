@@ -1,28 +1,23 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
-import Header from "../components/header/header.component";
 
-export const PrivateRoute = ({
-  currentUser,
+import { Route, Redirect } from "react-router-dom";
+
+export default function PrivateRoute({
+  authed,
   component: Component,
   ...rest
-}) => {
+}) {
   return (
     <Route
       {...rest}
       component={(props) => {
-        return currentUser ? (
-          <div>
-            <Header />
-            <Component {...props} />
-          </div>
-        ) : (
-          <Redirect to="/" />
-        );
+        console.log(authed, "IN IF");
+        if (authed) {
+          return <Component {...props} />;
+        } else if (authed === false) {
+          return <Redirect to={"/"} />;
+        }
       }}
     />
   );
-};
-
-export default PrivateRoute;
+}
