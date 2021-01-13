@@ -7,10 +7,7 @@ import Landing from "./landing/Landing.component";
 import CheckoutForm from "./checkout/checkout.container";
 import NewFabForm from "./newFab/newFab.component";
 import PrivateRoute from "../routers/PrivateRoute";
-//const PrivateRoute = lazy(() => import("../routers/PrivateRoute"));
 import Dashboard from "./dashboard/Dashboard";
-
-//const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
 const App = (props) => {
   const { fetchUser, currentUser } = props;
@@ -30,7 +27,11 @@ const App = (props) => {
             component={Dashboard}
           />
           <Route exact path="/fab/new" component={NewFabForm} />
-          <PrivateRoute path="/checkout" component={CheckoutForm} />
+          <PrivateRoute
+            path="/checkout"
+            component={CheckoutForm}
+            authed={currentUser}
+          />
         </Switch>
       </BrowserRouter>
     </div>
