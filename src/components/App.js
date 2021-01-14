@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, lazy, Component } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./header/header.component";
 import { connect } from "react-redux";
