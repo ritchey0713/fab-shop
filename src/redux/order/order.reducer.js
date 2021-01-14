@@ -7,6 +7,7 @@ const orderReducer = (state = INITIAL_STATE, action) => {
     case SEND_PAYMENT:
       return {
         ...state,
+        [action.payload.id]: action.payload,
       };
     default:
       return state;
