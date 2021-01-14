@@ -10,11 +10,11 @@ export default function PrivateRoute({
   return (
     <Route
       {...rest}
-      component={(props) => {
+      render={(props) => {
         console.log(authed, "IN IF");
-        if (authed) {
+        if (authed.currentUser) {
           return <Component {...props} />;
-        } else if (authed === false) {
+        } else if (authed.currentUser === false) {
           return <Redirect to={"/"} />;
         }
       }}
