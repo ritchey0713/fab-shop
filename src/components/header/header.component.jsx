@@ -6,6 +6,7 @@ import { isLoggedIn } from "../../utils/isLoggedIn";
 import { Link } from "react-router-dom";
 
 const Header = ({ currentUser }) => {
+  console.log(currentUser);
   return (
     <nav>
       <div className="nav-wrapper">
@@ -24,7 +25,7 @@ const Header = ({ currentUser }) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  currentUser: state.user,
+  currentUser: state.user.currentUser,
 });
 
 export default connect(mapStateToProps)(Header);
