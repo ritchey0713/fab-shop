@@ -1,0 +1,1 @@
+export const CREATE_FAB_REQUEST = "CREATE_FAB_REQUEST";
