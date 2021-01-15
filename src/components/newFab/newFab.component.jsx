@@ -50,7 +50,7 @@ const NewFabForm = () => {
         validationSchema={fabSchema}
         onSubmit={(values, actions) => {
           console.log("VALUES:", values);
-          console.log("ACTIONS:", actions);
+          actions.resetForm();
         }}
       >
         {() => {
