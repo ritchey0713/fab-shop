@@ -5,6 +5,8 @@ import CustomCheckbox from "../formInputs/checkBox.component";
 import CustomSelect from "../formInputs/customSelect.component";
 import CustomTextField from "../formInputs/textField.component";
 import CustomDatePicker from "../formInputs/datePicker.component";
+import { connect } from "react-redux";
+import { createRequest } from "../../redux/fab/fab.actions";
 
 // title
 //date needed
@@ -33,7 +35,7 @@ let fabSchema = yup.object().shape({
     .required("Required"),
 });
 
-const NewFabForm = () => {
+const NewFabForm = ({ createRequest }) => {
   const initialValues = {
     title: "",
     dateNeeded: "",
@@ -132,4 +134,4 @@ const NewFabForm = () => {
   );
 };
 
-export default NewFabForm;
+export default connect(null, { createRequest })(NewFabForm);
