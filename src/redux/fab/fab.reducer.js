@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 };
 
 const fabReducer = (state = INITIAL_STATE, action) => {
+  console.log("in reducer");
   switch (action.type) {
     case CREATE_FAB_REQUEST:
       return Object.assign({}, state, {
