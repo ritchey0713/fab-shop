@@ -7,6 +7,8 @@ import CustomTextField from "../formInputs/textField.component";
 import CustomDatePicker from "../formInputs/datePicker.component";
 import { connect } from "react-redux";
 import { createRequest } from "../../redux/fab/fab.actions";
+import { useHistory } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 // title
 //date needed
@@ -36,6 +38,7 @@ let fabSchema = yup.object().shape({
 });
 
 const NewFabForm = ({ createRequest }) => {
+  const history = useHistory();
   const initialValues = {
     title: "",
     dateNeeded: "",
@@ -51,8 +54,9 @@ const NewFabForm = ({ createRequest }) => {
         initialValues={initialValues}
         validationSchema={fabSchema}
         onSubmit={(values, actions) => {
-          console.log("VALUES:", values);
-          actions.resetForm();
+          createRequest(values);
+          // actions.resetForm();
+          history.push("/dashboard");
         }}
       >
         {() => {
