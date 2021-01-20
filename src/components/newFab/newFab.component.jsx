@@ -8,7 +8,6 @@ import CustomDatePicker from "../formInputs/datePicker.component";
 import { connect } from "react-redux";
 import { createRequest } from "../../redux/fab/fab.actions";
 import { useHistory } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 
 // title
 //date needed
@@ -55,7 +54,6 @@ const NewFabForm = ({ createRequest }) => {
         validationSchema={fabSchema}
         onSubmit={(values, actions) => {
           createRequest(values);
-          // actions.resetForm();
           history.push("/dashboard");
         }}
       >
