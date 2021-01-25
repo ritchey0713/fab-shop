@@ -17,6 +17,9 @@ const Header = ({ currentUser }) => {
           <li>
             <Link to="/checkout">Checkout</Link>
           </li>
+          <li>
+            <Link to="/buy_credits">Buy Credits</Link>
+          </li>
           <li>{isLoggedIn(currentUser)}</li>
         </ul>
       </div>
