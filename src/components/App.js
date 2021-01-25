@@ -8,6 +8,7 @@ import CheckoutForm from "./checkout/checkout.container";
 import NewFabForm from "./newFab/newFab.component";
 import PrivateRoute from "../routers/PrivateRoute";
 import Dashboard from "./dashboard/Dashboard";
+import BuyCredits from "./buyCredits/BuyCredits.container";
 
 const App = (props) => {
   const { fetchUser, currentUser } = props;
@@ -30,6 +31,11 @@ const App = (props) => {
           <PrivateRoute
             path="/checkout"
             component={CheckoutForm}
+            authed={currentUser}
+          />
+          <PrivateRoute
+            path="/buy_credits"
+            component={BuyCredits}
             authed={currentUser}
           />
         </Switch>
