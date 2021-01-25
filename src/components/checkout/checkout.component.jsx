@@ -2,10 +2,10 @@ import { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styled from "@emotion/styled";
 
-import Row from "./prebuilt/Row.component";
-import BillingDetailsFields from "./prebuilt/BillingDetailsFields.component";
-import SubmitButton from "./prebuilt/SubmitButton";
-import CheckoutError from "./prebuilt/CheckoutError.component";
+import Row from "../prebuilt/Row.component";
+import BillingDetailsFields from "../prebuilt/BillingDetailsFields.component";
+import SubmitButton from "../prebuilt/SubmitButton";
+import CheckoutError from "../prebuilt/CheckoutError.component";
 import { connect } from "react-redux";
 import { sendPayment } from "../../redux/order/order.actions";
 
@@ -19,7 +19,12 @@ const CardElementContainer = styled.div`
   }
 `;
 
-const CheckoutForm = ({ price, onSuccessfulCheckout, sendPayment }) => {
+const CheckoutForm = ({
+  price,
+  onSuccessfulCheckout,
+  sendPayment,
+  history,
+}) => {
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
 
@@ -53,7 +58,7 @@ const CheckoutForm = ({ price, onSuccessfulCheckout, sendPayment }) => {
     const cardElement = elements.getElement("card");
 
     try {
-      sendPayment(stripe, price, cardElement, billingDetails);
+      sendPayment(stripe, price, cardElement, billingDetails, history);
       // defaultTest();
       // set error from reducer
       // if (paymentMethodReq.error) {
@@ -68,11 +73,10 @@ const CheckoutForm = ({ price, onSuccessfulCheckout, sendPayment }) => {
       //   setProcessingTo(false);
       //   return;
       // }
-
-      // onSuccessfulCheckout();
     } catch (err) {
       setCheckoutError(err.message);
     }
+    onSuccessfulCheckout();
   };
 
   // Learning
