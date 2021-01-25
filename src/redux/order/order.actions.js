@@ -5,7 +5,8 @@ export const sendPayment = (
   stripe,
   price,
   cardElement,
-  billingDetails
+  billingDetails,
+  history
 ) => async (dispatch) => {
   const {
     data: { order, secret },
@@ -21,4 +22,5 @@ export const sendPayment = (
     payment_method: paymentMethodReq.paymentMethod.id,
   });
   dispatch({ type: SEND_PAYMENT, payload: order });
+  history.push("/dashboard");
 };
