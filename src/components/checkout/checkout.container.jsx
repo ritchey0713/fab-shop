@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./checkout.component";
-import GlobalStyles from "./prebuilt/GlobalStyles";
-import Shop from "./prebuilt/Shop";
+import GlobalStyles from "../prebuilt/GlobalStyles";
+import Shop from "../prebuilt/Shop";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -24,7 +24,8 @@ const CheckoutContainer = () => {
       <Shop onAdd={add} onRemove={rem} numItem={numItem} />
       <CheckoutForm
         price={getPrice(numItem)}
-        onSuccessfulCheckout={() => history.push("/success")}
+        onSuccessfulCheckout={() => history.push("/dashboard")}
+        history={history}
       />
     </Elements>
   );
