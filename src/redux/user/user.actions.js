@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, LOG_OUT_USER } from "./user.types";
+import { FETCH_USER, LOG_OUT_USER, ADD_CREDITS } from "./user.types";
 
 export const fetchUser = () => async (dispatch) => {
   const resp = await axios.get("/api/current_user");
@@ -38,4 +38,30 @@ export const signIn = () => async (dispatch) => {
   //   withCredentials: true,
   // });
   console.log(resp);
+};
+
+export const addCredits = (
+  stripe,
+  credits,
+  price,
+  cardElement,
+  billingDetails,
+  history
+) => async (dispatch) => {
+  const {
+    data: { user, secret },
+  } = await axios.post("/api/credits", {
+    amount: price * 100,
+    credits,
+  });
+  const paymentMethodReq = await stripe.createPaymentMethod({
+    type: "card",
+    card: cardElement,
+    billing_details: billingDetails,
+  });
+  await stripe.confirmCardPayment(secret, {
+    payment_method: paymentMethodReq.paymentMethod.id,
+  });
+  dispatch({ type: ADD_CREDITS, payload: user });
+  history.push("/dashboard");
 };
