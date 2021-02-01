@@ -2,6 +2,7 @@ import { Formik, Form } from "formik";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
+import CustomTextField from "../formInputs/textField.component";
 
 // title: String,
 // body: String,
@@ -27,7 +28,33 @@ const SurveyForm = () => {
 
   return (
     <div>
-      <Formik></Formik>
+      <Form>
+        <h2>Create an email survey!</h2>
+        <div>
+          <CustomTextField
+            label="title"
+            name="title"
+            type="text"
+            placeholder="Title"
+          />
+        </div>
+        <div>
+          <CustomTextField
+            label="subject"
+            name="subject"
+            type="text"
+            placeholder="Email Subject"
+          />
+        </div>
+        <div>
+          <CustomTextField
+            label="body"
+            name="body"
+            type="text"
+            placeholder="Email Body"
+          />
+        </div>
+      </Form>
     </div>
   );
 };
