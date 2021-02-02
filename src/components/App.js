@@ -9,6 +9,7 @@ import NewFabForm from "./newFab/newFab.component";
 import PrivateRoute from "../routers/PrivateRoute";
 import Dashboard from "./dashboard/Dashboard";
 import BuyCredits from "./buyCredits/BuyCredits.container";
+import SurveyForm from "./newSurvey/newSurvey.comp";
 
 const App = (props) => {
   const { fetchUser, currentUser } = props;
@@ -31,6 +32,11 @@ const App = (props) => {
           <PrivateRoute
             path="/checkout"
             component={CheckoutForm}
+            authed={currentUser}
+          />
+          <PrivateRoute
+            path="/survey/new"
+            component={SurveyForm}
             authed={currentUser}
           />
           <PrivateRoute
