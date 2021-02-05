@@ -23,6 +23,35 @@ let surveySchema = yup.object().shape({
   recipients: yup.string().required,
 });
 
+// const addRecipeints = (recipientCount) => {
+//   let i = 0;
+//   while (i < recipientCount) {
+//     <div>
+//       <CustomTextField
+//         label="recipients"
+//         name="recipients"
+//         type="text"
+//         placeholder="recipient email"
+//       />
+//     </div>;
+//   }
+// };
+
+const addRecipients = (recipientCount) => {
+  let inputs = [];
+  let i = 0;
+  while (i < recipientCount) {
+    inputs.push({
+      label: "recipients",
+      name: "recipients",
+      type: "text",
+      placeholder: "recipient email",
+    });
+    i++;
+  }
+  console.log(inputs);
+};
+
 const SurveyForm = () => {
   const history = useHistory();
   const [recipientCount, setRecipientCount] = useState(1);
@@ -70,14 +99,7 @@ const SurveyForm = () => {
                   placeholder="Email Body"
                 />
               </div>
-              <div>
-                <CustomTextField
-                  label="recipients"
-                  name="recipients"
-                  type="text"
-                  placeholder="recipient email"
-                />
-              </div>
+
               <div>
                 <button
                   type="button"
