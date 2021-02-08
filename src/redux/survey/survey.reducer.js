@@ -1,4 +1,4 @@
-import { ADD_SURVEY } from "./survey.actions";
+import { ADD_SURVEY } from "./survey.types";
 
 const INITIAL_STATE = {
   surveys: {},
