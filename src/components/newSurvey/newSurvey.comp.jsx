@@ -1,8 +1,10 @@
 import { Formik, Form } from "formik";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import * as yup from "yup";
 import CustomTextField from "../formInputs/textField.component";
+import { addSurvey } from "../../redux/survey/survey.actions";
 
 // title: String,
 // body: String,
@@ -52,7 +54,7 @@ const addRecipients = (recipientCount) => {
   return inputs;
 };
 
-const SurveyForm = () => {
+const SurveyForm = ({ addSurvey }) => {
   const history = useHistory();
   const [recipientCount, setRecipientCount] = useState(1);
   const [recipients, setRecipients] = useState([]);
@@ -81,6 +83,7 @@ const SurveyForm = () => {
           console.log("SUBMITTED");
           console.log("values: ", values);
           console.log("recips: ", recipients);
+          addSurvey(values, recipients);
         }}
       >
         {() => {
@@ -149,4 +152,4 @@ const SurveyForm = () => {
   );
 };
 
-export default SurveyForm;
+export default connect(null, { addSurvey })(SurveyForm);
