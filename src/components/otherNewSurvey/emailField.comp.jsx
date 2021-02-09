@@ -2,12 +2,23 @@
 
 import React from "react";
 
-export default ({ input, label }) => {
-  console.log(input);
-  return (
-    <div>
-      <label>{label}</label>
-      <input onBlur={input.onBlur} />
-    </div>
-  );
+export default (props) => {
+  console.log(props.names);
+  return props.names.map((name) => {
+    return (
+      <div>
+        <label>{props.label}</label>
+        <input onBlur={props[name].input.onBlur} type="text" />
+      </div>
+    );
+  });
 };
+
+//{
+//   props.names.map((name) => (
+//     <div>
+//       <label>{props.label}</label>
+//       <input onBlur={props.recipient.input.onBlur} type="text" />
+//     </div>
+//   ));
+// }
