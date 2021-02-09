@@ -10,6 +10,7 @@ import PrivateRoute from "../routers/PrivateRoute";
 import Dashboard from "./dashboard/Dashboard";
 import BuyCredits from "./buyCredits/BuyCredits.container";
 import SurveyForm from "./newSurvey/newSurvey.comp";
+import NewSurvey from "./otherNewSurvey/otherNewSurvey.comp";
 
 const App = (props) => {
   const { fetchUser, currentUser } = props;
@@ -36,7 +37,7 @@ const App = (props) => {
           />
           <PrivateRoute
             path="/survey/new"
-            component={SurveyForm}
+            component={NewSurvey}
             authed={currentUser}
           />
           <PrivateRoute
