@@ -85,7 +85,7 @@
 import React, { useState } from "react";
 import { reduxForm, Field, Fields, FieldArray } from "redux-form";
 import BasicTextField from "./basicTextField.comp";
-import emailField from "./emailField.comp";
+import AddEmailField from "./emailField.comp";
 
 const FIELDS = [
   { label: "Survey Title", name: "title" },
@@ -94,7 +94,6 @@ const FIELDS = [
 ];
 
 const OtherSurveyForm = (props) => {
-  const [recipients, setRecipients] = useState({});
   const renderFields = () =>
     FIELDS.map(({ label, name }) => {
       return (
@@ -108,26 +107,11 @@ const OtherSurveyForm = (props) => {
       );
     });
 
-  // const renderEmailFields = () =>
-  //   recipients.length > 0 ? (
-  //     <Fields names={recipients} label="Email" component={emailField} />
-  //   ) : null;
-
-  const renderEmailFields = () =>
-    recipients.length > 0 ? (
-      <FieldArray
-        name="recipients"
-        fields={recipients}
-        label="Email"
-        component={emailField}
-      />
-    ) : null;
-
   return (
     <div>
       <form onSubmit={props.handleSubmit((values) => console.log(values))}>
         {renderFields()}
-        <FieldArray name="emails" component={emailField} />
+        <FieldArray name="emails" component={AddEmailField} />
         <button type="submit">submit</button>
       </form>
     </div>
@@ -137,8 +121,3 @@ const OtherSurveyForm = (props) => {
 export default reduxForm({
   form: "surveyForm",
 })(OtherSurveyForm);
-
-// <button type="button" onClick={renderEmailFields()}>
-// Add recipient
-// </button>
-//{renderEmailFields()}
