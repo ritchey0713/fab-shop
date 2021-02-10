@@ -83,6 +83,7 @@
 // form page
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { reduxForm, Field, Fields, FieldArray } from "redux-form";
 import BasicTextField from "./basicTextField.comp";
 import AddEmailField from "./emailField.comp";
@@ -112,7 +113,13 @@ const OtherSurveyForm = (props) => {
       <form onSubmit={props.handleSubmit((values) => console.log(values))}>
         {renderFields()}
         <FieldArray name="emails" component={AddEmailField} />
-        <button type="submit">submit</button>
+        <Link to="/dashboard" className="red btn-flat white-text">
+          Cancel
+        </Link>
+        <button type="submit" className="teal btn-flat right white-text">
+          next
+          <i className="material-icons right">done</i>
+        </button>
       </form>
     </div>
   );
