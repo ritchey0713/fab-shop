@@ -125,6 +125,38 @@ const OtherSurveyForm = (props) => {
   );
 };
 
+const validate = (values) => {
+  const errors = {};
+  console.log(values.emails);
+  FIELDS.forEach(({ name }) => {
+    if (!values[name]) {
+      errors[name] = "You must provide some text!";
+    }
+  });
+
+  if (!values.emails || values.emails.length < 1) {
+    errors.emails = { _error: "must provide at least one email" };
+  } else {
+    const emailsArrErrors = [];
+
+    values.emails.forEach((email, index) => {
+      const emailErrors = {};
+      console.log("EMAIL ERROR", email);
+      if (!email || !email.email) {
+        emailErrors.email = "required";
+        emailsArrErrors[index] = emailErrors;
+      }
+    });
+    if (emailsArrErrors.length) {
+      errors.emails = emailsArrErrors;
+    }
+  }
+
+  console.log(errors);
+  return errors;
+};
+
 export default reduxForm({
+  validate,
   form: "surveyForm",
 })(OtherSurveyForm);
