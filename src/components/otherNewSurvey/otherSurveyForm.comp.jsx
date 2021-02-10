@@ -87,6 +87,8 @@ import { Link } from "react-router-dom";
 import { reduxForm, Field, Fields, FieldArray } from "redux-form";
 import BasicTextField from "./basicTextField.comp";
 import AddEmailField from "./emailField.comp";
+import validateEmails from "../../utils/emailValidator";
+import emailValidator from "../../utils/emailValidator";
 
 const FIELDS = [
   { label: "Survey Title", name: "title" },
@@ -127,7 +129,6 @@ const OtherSurveyForm = (props) => {
 
 const validate = (values) => {
   const errors = {};
-  console.log(values.emails);
   FIELDS.forEach(({ name }) => {
     if (!values[name]) {
       errors[name] = "You must provide some text!";
@@ -141,9 +142,11 @@ const validate = (values) => {
 
     values.emails.forEach((email, index) => {
       const emailErrors = {};
-      console.log("EMAIL ERROR", email);
       if (!email || !email.email) {
         emailErrors.email = "required";
+        emailsArrErrors[index] = emailErrors;
+      } else {
+        emailErrors.email = emailValidator(email.email);
         emailsArrErrors[index] = emailErrors;
       }
     });
@@ -151,8 +154,6 @@ const validate = (values) => {
       errors.emails = emailsArrErrors;
     }
   }
-
-  console.log(errors);
   return errors;
 };
 
