@@ -38,7 +38,7 @@ import EmailTemplate from "./emailTemplate.comp";
 //   ));
 // }
 
-const emailField = (props) => (
+const AddEmailField = (props) => (
   <div>
     <button type="button" onClick={() => props.fields.push({})}>
       add email
@@ -55,4 +55,4 @@ const emailField = (props) => (
   </div>
 );
 
-export default emailField;
+export default AddEmailField;
