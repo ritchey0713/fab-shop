@@ -38,21 +38,27 @@ import EmailTemplate from "./emailTemplate.comp";
 //   ));
 // }
 
-const AddEmailField = (props) => (
-  <div>
-    <button type="button" onClick={() => props.fields.push({})}>
-      add email
-    </button>
-
-    {props.fields.map((email, index) => (
-      <Field
-        name={`${email}.email`}
-        type="text"
-        component={EmailTemplate}
-        label="email"
-      />
-    ))}
-  </div>
-);
+const AddEmailField = (props) => {
+  return (
+    <div>
+      <button type="button" onClick={() => props.fields.push({})}>
+        add email
+      </button>
+      {props.meta.submitFailed && props.meta.error && (
+        <span className="red-text" style={{ marginBottom: "20px" }}>
+          {props.meta.error}
+        </span>
+      )}
+      {props.fields.map((email, index) => (
+        <Field
+          name={`${email}.email`}
+          type="text"
+          component={EmailTemplate}
+          label="email"
+        />
+      ))}
+    </div>
+  );
+};
 
 export default AddEmailField;
