@@ -10,7 +10,7 @@ const NewSurvey = () => {
 
   const renderReview = () => {
     if (showReview) {
-      return <SurveyReview />;
+      return <SurveyReview onCancel={() => setShowReview(false)} />;
     }
 
     return <OtherSurveyForm onSurveySubmit={() => setShowReview(true)} />;
