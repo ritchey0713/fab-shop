@@ -7,3 +7,9 @@ export const addSurvey = (data, recipients) => async (dispatch) => {
 
   // TODO add dispatch
 };
+
+// for othersurvey
+
+export const submitSurvey = (values) => {
+  return { type: ADD_SURVEY };
+};
