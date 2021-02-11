@@ -1,6 +1,7 @@
 // renders form and review page
 
 import React, { useState } from "react";
+import { reduxForm } from "redux-form";
 import OtherSurveyForm from "./otherSurveyForm.comp";
 import SurveyReview from "./formReview.comp";
 
@@ -22,4 +23,7 @@ const NewSurvey = () => {
   );
 };
 
-export default NewSurvey;
+// add redux form to reset "persistance" when totally leaving form ie going to dashboard etc
+export default reduxForm({
+  form: "surveyForm",
+})(NewSurvey);
