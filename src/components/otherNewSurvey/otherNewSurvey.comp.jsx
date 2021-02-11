@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import OtherSurveyForm from "./otherSurveyForm.comp";
-import SurveyForm from "./formReview.comp";
 import SurveyReview from "./formReview.comp";
 
 const NewSurvey = () => {
