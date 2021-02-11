@@ -82,12 +82,11 @@
 
 // form page
 
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { reduxForm, Field, Fields, FieldArray } from "redux-form";
+import { reduxForm, Field, FieldArray } from "redux-form";
 import BasicTextField from "./basicTextField.comp";
 import AddEmailField from "./emailField.comp";
-import validateEmails from "../../utils/emailValidator";
 import emailValidator from "../../utils/emailValidator";
 
 const FIELDS = [
@@ -112,7 +111,7 @@ const OtherSurveyForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={props.handleSubmit((values) => console.log(values))}>
+      <form onSubmit={props.handleSubmit(props.onSurveySubmit)}>
         {renderFields()}
         <FieldArray name="emails" component={AddEmailField} />
         <Link to="/dashboard" className="red btn-flat white-text">
