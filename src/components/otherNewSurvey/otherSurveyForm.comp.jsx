@@ -88,16 +88,11 @@ import { reduxForm, Field, FieldArray } from "redux-form";
 import BasicTextField from "./basicTextField.comp";
 import AddEmailField from "./emailField.comp";
 import emailValidator from "../../utils/emailValidator";
-
-const FIELDS = [
-  { label: "Survey Title", name: "title" },
-  { label: "Subject", name: "subject" },
-  { label: "Body", name: "body" },
-];
+import { formFields } from "./formFields.js";
 
 const OtherSurveyForm = (props) => {
   const renderFields = () =>
-    FIELDS.map(({ label, name }) => {
+    formFields.map(({ label, name }) => {
       return (
         <Field
           key={name}
@@ -128,7 +123,7 @@ const OtherSurveyForm = (props) => {
 
 const validate = (values) => {
   const errors = {};
-  FIELDS.forEach(({ name }) => {
+  formFields.forEach(({ name }) => {
     if (!values[name]) {
       errors[name] = "You must provide some text!";
     }
