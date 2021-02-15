@@ -2,8 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { formFields } from "./formFields.js";
 import { submitSurvey } from "../../redux/survey/survey.actions";
+import { useHistory } from "react-router-dom";
 
 const SurveyReview = ({ onCancel, formValues, submitSurvey }) => {
+  const history = useHistory();
   const reviewFields = () =>
     formFields.map(({ label, name }) => (
       <div key={name}>
@@ -34,7 +36,7 @@ const SurveyReview = ({ onCancel, formValues, submitSurvey }) => {
 
       <button
         className="green white-text btn-flat right"
-        onClick={() => submitSurvey(formValues)}
+        onClick={() => submitSurvey(formValues, history)}
       >
         Send Survey
         <i className="material-icons right">email</i>
