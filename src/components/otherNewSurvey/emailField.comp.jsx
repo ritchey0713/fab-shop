@@ -49,9 +49,9 @@ const AddEmailField = (props) => {
           {props.meta.error}
         </span>
       )}
-      {props.fields.map((email, index) => (
+      {props.fields.map((recipient, index) => (
         <Field
-          name={`${email}.email`}
+          name={`${recipient}.recipient`}
           type="text"
           component={EmailTemplate}
           label="email"

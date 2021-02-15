@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   order: orderReducer,
   fab: fabReducer,
-  // survey: surveyReducer
+  survey: surveyReducer,
   form: reduxForm,
 });
 

@@ -108,7 +108,7 @@ const OtherSurveyForm = (props) => {
     <div>
       <form onSubmit={props.handleSubmit(props.onSurveySubmit)}>
         {renderFields()}
-        <FieldArray name="emails" component={AddEmailField} />
+        <FieldArray name="recipients" component={AddEmailField} />
         <Link to="/dashboard" className="red btn-flat white-text">
           Cancel
         </Link>
@@ -129,23 +129,24 @@ const validate = (values) => {
     }
   });
 
-  if (!values.emails || values.emails.length < 1) {
-    errors.emails = { _error: "must provide at least one email" };
+  if (!values.recipients || values.recipients.length < 1) {
+    errors.recipients = { _error: "must provide at least one email" };
   } else {
-    const emailsArrErrors = [];
+    const recipientsArrErrors = [];
 
-    values.emails.forEach((email, index) => {
-      const emailErrors = {};
-      if (!email || !email.email) {
-        emailErrors.email = "required";
-        emailsArrErrors[index] = emailErrors;
+    values.recipients.forEach((recipients, index) => {
+      const recipientsErrors = {};
+      if (!recipients || !recipients.recipient) {
+        recipientsErrors.recipients = "required";
+        recipientsArrErrors[index] = recipientsErrors;
       } else {
-        emailErrors.email = emailValidator(email.email);
-        emailsArrErrors[index] = emailErrors;
+        recipientsErrors.recipient = emailValidator(recipients.recipient);
+        console.log(!recipients, !recipients.recipient, "ERRORSSSS");
+        recipientsArrErrors[index] = recipientsErrors;
       }
     });
-    if (emailsArrErrors.length) {
-      errors.emails = emailsArrErrors;
+    if (recipientsArrErrors.length) {
+      errors.recipients = recipientsArrErrors;
     }
   }
   return errors;

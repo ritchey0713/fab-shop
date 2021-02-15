@@ -20,8 +20,8 @@ const SurveyReview = ({ onCancel, formValues, submitSurvey }) => {
 
         <div>
           <label>Recipients</label>
-          {formValues.emails.map((recip) => (
-            <div>{recip.email}</div>
+          {formValues.recipients.map((recip) => (
+            <div>{recip.recipient}</div>
           ))}
         </div>
       </div>
