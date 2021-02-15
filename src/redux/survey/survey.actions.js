@@ -11,8 +11,9 @@ export const addSurvey = (data, recipients) => async (dispatch) => {
 
 // for othersurvey
 
-export const submitSurvey = (values) => async (dispatch) => {
+export const submitSurvey = (values, history) => async (dispatch) => {
   const resp = await axios.post("/api/surveys", { values });
+  history.push("/surveys");
   dispatch({ type: ADD_SURVEY, payload: resp.data.survey });
   dispatch({ type: FETCH_USER, payload: resp.data.user });
 };
