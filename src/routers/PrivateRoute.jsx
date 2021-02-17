@@ -11,7 +11,6 @@ export default function PrivateRoute({
     <Route
       {...rest}
       render={(props) => {
-        console.log(authed, "IN IF");
         if (authed.currentUser) {
           return <Component {...props} />;
         } else if (authed.currentUser === false) {
