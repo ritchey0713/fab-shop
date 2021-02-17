@@ -6,7 +6,6 @@ import { isLoggedIn } from "../../utils/isLoggedIn";
 import { Link } from "react-router-dom";
 
 const Header = ({ currentUser }) => {
-  console.log(currentUser);
   return (
     <nav>
       <div className="nav-wrapper">
