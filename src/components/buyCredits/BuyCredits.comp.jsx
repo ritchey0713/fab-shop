@@ -9,37 +9,9 @@ import CheckoutError from "../prebuilt/CheckoutError.component";
 import { connect } from "react-redux";
 import { addCredits } from "../../redux/user/user.actions";
 
-const CardElementContainer = styled.div`
-  height: 40px;
-  display: flex;
-  align-items: center;
-  & .StripeElement {
-    width: 100%;
-    padding: 15px;
-  }
-`;
-
-const iframeStyles = {
-  base: {
-    color: "#fff",
-    fontSize: "16px",
-    iconColor: "#fff",
-    "::placeholder": {
-      color: "#87bbfd",
-    },
-  },
-  invalid: {
-    iconColor: "#FFC7EE",
-    color: "#FFC7EE",
-  },
-  complete: {
-    iconColor: "#cbf4c9",
-  },
-};
-
 const cardElementOpts = {
   iconStyle: "solid",
-  style: iframeStyles,
+  // style: iframeStyles,
   hidePostalCode: true,
 };
 
@@ -105,12 +77,12 @@ const BuyCredits = ({
           <BillingDetailsFields />
         </Row>
         <Row>
-          <CardElementContainer>
+          <div>
             <CardElement
               options={cardElementOpts}
               onChange={handleCardDetailsChange}
             />
-          </CardElementContainer>
+          </div>
         </Row>
         {checkoutError && <CheckoutError>{checkoutError}</CheckoutError>}
         <Row>
