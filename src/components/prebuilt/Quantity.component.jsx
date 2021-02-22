@@ -9,7 +9,6 @@ const Input = styled.input`
   text-align: center;
   outline: none;
   background: transparent;
-  border: 1px solid #819efc;
   color: black;
   height: 40px;
   user-select: none;
