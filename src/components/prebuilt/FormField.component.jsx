@@ -6,7 +6,6 @@ const FormFieldContainer = styled.div`
   -ms-flex-align: center;
   align-items: center;
   margin-left: 15px;
-  border-top: 1px solid #819efc;
   &:first-of-type {
     border-top: none;
   }
@@ -21,7 +20,6 @@ const Label = styled.label`
   font-size: 16px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  border-right: 1px solid #819efc;
 `;
 
 const Input = styled.input`
