@@ -1,4 +1,4 @@
-import { ADD_SURVEY } from "./survey.types";
+import { ADD_SURVEY, FETCH_SURVEYS } from "./survey.types";
 
 const INITIAL_STATE = {
   surveys: {},
@@ -7,12 +7,20 @@ const INITIAL_STATE = {
 const surveyReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_SURVEY:
-      return Object.assign({}, state, {
-        surveys: {
-          ...state.surveys,
-          [action.payload._id]: action.payload,
-        },
-      });
+      return {
+        ...state,
+        [action.payload._id]: action.payload,
+      };
+
+    case FETCH_SURVEYS:
+      return {
+        ...state.surveys,
+        ...action.payload.reduce((newObj, eleObj) => {
+          newObj[eleObj._id] = eleObj;
+          return newObj;
+        }, {}),
+      };
+
     default:
       return state;
   }
