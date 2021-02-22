@@ -27,7 +27,7 @@ const Controls = styled.div`
 const Shop = ({ onAdd, onRemove, numItem }) => {
   return (
     <ShopStyle>
-      <ShopName>/stripe/donut</ShopName>
+      <ShopName>Fab Shop Credits</ShopName>
       <Image src="./donut.png" width="100px"></Image>
       <Controls>
         <Quantity onAdd={onAdd} onRemove={onRemove} quantity={numItem} />
